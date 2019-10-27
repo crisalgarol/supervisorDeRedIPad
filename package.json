@@ -1,0 +1,16 @@
+{
+  "name": "supervisor_de_red_servidor",
+  "version": "3.0.0",
+  "description": "Servidor encargado de la administracion de nodos conectados al cluster.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "B024",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "uuid": "^3.3.3"
+  }
+}
