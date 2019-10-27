@@ -7,10 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "B024",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^2.3.0",
-    "uuid": "^3.3.3"
-  }
+  "license": "ISC"
 }
