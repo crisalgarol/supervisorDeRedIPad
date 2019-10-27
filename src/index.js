@@ -26,10 +26,19 @@ io.on('connection', client => {
             if (dataFromClient.from == config.typesDef.nodo) {
                 nodoClientServer.registerNodo(dataFromClient.host, userID);
 
-            }else{
+            }else if (dataFromClient.from == config.typesDef.client) {
                 console.log((new Date()) + ' (Controller) Se recibio petición de un cliente.');// + client + '.');
                 json = nodoClientServer.verNodos();
-                sendMessageToClient(client, JSON.stringify(json));
+                sendMessageToClient(client, JSON.stringify(json), false);
+
+            }else if (dataFromClient.from == config.typesDef.reclient) {
+                console.log((new Date()) + ' (Controller) Se recibio re-petición de un cliente.');// + client + '.');
+                json = nodoClientServer.verNodos();
+                sendMessageToClient(client, JSON.stringify(json), true);
+
+            }else{
+                console.log((new Date()) + ' (Controller) Evento desconocido.');// + client + '.');
+                console.log(data);
             }
 
         } catch (error) {
@@ -58,6 +67,11 @@ io.on('connection', client => {
 /**Metodo mediante el cual se envia una respuesta al cliente,
  * como recibe el mensaje lo envia, no parsea.
  */
-const sendMessageToClient = (client, json) =>{
-    client.emit('client', json);
+const sendMessageToClient = (client, json, resend) =>{
+
+    if(resend){
+        client.emit(config.typesDef.reclient, json);
+    }else{
+        client.emit(config.typesDef.client, json);
+    }
 }

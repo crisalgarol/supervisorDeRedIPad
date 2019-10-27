@@ -7,7 +7,7 @@ nodos = [];
 exports.verNodos = function(){
 
     nodos.sort(function(a, b){
-        return a.Ram_Libre - b.Ram_Libre;
+        return b.Ram_Libre - a.Ram_Libre;
     });
 
     return nodos;
